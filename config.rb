@@ -1,3 +1,19 @@
+# Use HAML templating language
+set :haml, {:ugly=>true, :format=>:html5}
+
+# Use redcarpet as default markdown engine
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks=>true, :smartypants=>true
+
+# Watch files and reload browser on change
+activate :livereload
+
+# Automatically add vendor prefixes to CSS rules in stylesheets
+activate :autoprefixer
+
+# Pretty URLs
+activate :directory_indexes
+
 ###
 # Blog settings
 ###
@@ -6,13 +22,13 @@
 
 activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
-  # blog.prefix = "blog"
+  blog.prefix = "blog"
 
-  # blog.permalink = "{year}/{month}/{day}/{title}.html"
+  blog.permalink = ":year/:month/:day/:title"
   # Matcher for blog source files
-  blog.sources = "/posts/:year-:month-:day-:title.html"
-  blog.taglink = "/posts/tags/:tag.html"
-  # blog.layout = "layout"
+  blog.sources = ":year-:month-:day-:title.html"
+  blog.taglink = "tags/:tag.html"
+  blog.layout = "post"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = "{year}.html"
@@ -57,7 +73,7 @@ page "/feed.xml", layout: false
 #   page "/admin/*"
 # end
 
-# Proxy pages (http://middlemanapp.com/dynamic-pages/)
+# Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", locals: {
 #  which_fake_page: "Rendering a fake page with a local variable" }
 
@@ -69,26 +85,7 @@ page "/feed.xml", layout: false
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-activate :livereload
-
-# Use Haml markup syntax
-set :haml, {:ugly => true, :format => :html5}
-
-# Use pretty urls
-activate :directory_indexes
-
-# Activate syntax highlighting
-activate :syntax
-set :markdown_engine, :redcarpet
-set :markdown, :smartypants => true, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
-
-# Auto-prefix vendor prefixes to styles post-processing
-activate :autoprefixer
-
-# Add Bower components path
-ready do
-  sprockets.append_path File.join "#{root}", 'bower_components'
-end
+# activate :livereload
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -97,11 +94,11 @@ end
 #   end
 # end
 
-set :css_dir, 'stylesheets'
+set :css_dir, 'assets/styles'
 
-set :js_dir, 'scripts'
+set :js_dir, 'assets/scripts'
 
-set :images_dir, 'images'
+set :images_dir, 'assets/images'
 
 # Build-specific configuration
 configure :build do
@@ -111,9 +108,6 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
-  # Minify Html on build
-  activate :minify_html
-
   # Enable cache buster
   # activate :asset_hash
 
@@ -122,14 +116,4 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
-end
-
-# Deploy site using rsync, Github Pages(default), FTP, or SFTP
-activate :deploy do |deploy|
-  deploy.method = :git
-  # Optional Settings
-  # deploy.remote   = "custom-remote" # remote name or git url, default: origin
-  # deploy.branch   = "custom-branch" # default: gh-pages
-  # deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
-  deploy.build_before = true # default: false
 end

@@ -1,0 +1,8 @@
+hr {
+  @extend %no-border;
+  @extend %no-padding;
+  border-top: 1px solid $color-gray;
+  display: block;
+  height: 1px;
+  margin: $unit 0;
+}

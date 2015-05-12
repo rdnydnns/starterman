@@ -1,0 +1,9 @@
+fieldset {
+  @extend %no-border;
+  @extend %no-margin;
+  @extend %no-padding;
+}
+
+textarea {
+  resize: vertical;
+}

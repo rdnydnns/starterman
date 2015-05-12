@@ -10,28 +10,10 @@ per_page: 10
 - page_articles.each_with_index do |article, i|
   %h2
     = link_to article.title, article
-  %p #{article.date.strftime("%B %e %Y")}, Read time: #{article.body.reading_time :format => :approx}
+    %span= article.date.strftime('%b %e')
   -# use article.summary(250) if you have Nokogiri available to show just the first 250 characters
-  = article.summary
+  = article.body
 
 - if paginate
   - if next_page
     %p= link_to "Next page", next_page
-
-%aside
-  %h2 Recent Articles
-  %ol
-    - blog.articles[0...10].each do |article|
-      %li
-        = link_to article.title, article
-        %span= article.date.strftime("%b %e")
-
-  %h2 Tags
-  %ol
-    - blog.tags.each do |tag, articles|
-      %li= link_to "#{tag} (#{articles.size})", tag_path(tag)
-
-  %h2 By Year
-  %ol
-    - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
-      %li= link_to "#{year} (#{articles.size})", blog_year_path(year)

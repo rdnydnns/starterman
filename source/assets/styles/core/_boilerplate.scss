@@ -1,0 +1,136 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  color: $color-black;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+body {
+  @extend %no-margin;
+  @extend %no-padding;
+}
+
+::selection {
+  background: $color-selection;
+  text-shadow: none;
+}
+
+.browsehappy {
+  background: $color-gray;
+  color: $color-black;
+  margin: $unit-xs 0;
+  padding: $unit-xs 0;
+}
+
+// Helpers
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  @extend %no-border;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  @extend %no-margin;
+  clip: auto;
+  height: auto;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+// Style adjustments for high resolution devices
+@media print,
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+
+}
+
+// Print styles
+@media print {
+  * {
+    background: transparent;
+    box-shadow: none;
+    color: $color-black;
+    text-shadow: none;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  [href]:after {
+    content: ' (' attr(href) ')';
+  }
+
+  [title]:after {
+    content: ' (' attr(title) ')';
+  }
+
+  [href^='#']:after,
+  [href^='javascript:']:after {
+    content: '';
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid $color-gray;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
