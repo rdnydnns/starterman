@@ -1,4 +1,5 @@
 // bower:scss
+@import 'bower_components/normalize-scss/normalize';
 // endbower
 
 html,
@@ -7,43 +8,53 @@ body {
   width: 100%;
 }
 
-#door {
-  height: 100%;
-  width: 100%;
-  background: red;
+body {
+  background: url('/images/benz.jpg') no-repeat left bottom;
+  background-size: cover;
+  font-family: 'open sans', sans-serif;
+}
+
+header {
+  background: rgba(20, 20, 20, 0.7);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1em;
+  max-width: 20em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+}
+
+h1 {
+  font-family: 'Bungee Shade', sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+a,
+a:visited {
+  color: rgb(207, 45, 74);
 }
 
 #btn {
-  position: fixed;
-  top: 2em;
-  left: 2em;
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  line-height: 2;
+  padding: 0 1em;
+  letter-spacing: 2px;
+  width: 100%;
 }
 
-body {
-  background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
-}
-
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-}
-
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+#door {
+  height: 100%;
+  width: 100%;
+  background: url('/images/garage.gif') no-repeat center top;
+  background-size: cover;
 }

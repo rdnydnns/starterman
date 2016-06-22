@@ -38,6 +38,7 @@ function open() {
 
   if (door.style.height === '0%') {
     console.log('cycle complete');
+    status = 'open';
     clearInterval(openId);
   }
 }
@@ -49,6 +50,7 @@ function close() {
 
   if (door.style.height === '100%') {
     console.log('cycle complete');
+    status = 'closed'
     clearInterval(closeId);
   }
 }
